@@ -1,7 +1,4 @@
 #include "hackspi.h"
-#include "parameters.h"
-#include "starter.h"
-#include "linetracer.h"
 
 // 実行状態の列挙体
 typedef enum
