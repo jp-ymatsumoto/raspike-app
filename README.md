@@ -4,6 +4,10 @@
 
 ## 日本語
 
+### ユースケース図
+
+![overview](https://www.plantuml.com/plantuml/svg/SoWkIImgAStDuSf9JIjHACbNACfCpoXHICaiIaqkoSpFuqfCBialKb1wldhRiww65msjIWg9nGffoLmW-SIyz9nK1IMFnEJiu89C9OLgBWM5qkBKvCJYLA2EhJqljgz_tBZwsQRzZniNFsvSzcBhXXSBUnutpdpSr0qs9jJPaAkMAorPGLSNp7P8pKi1kGK0)
+
 ### クラス図
 
 ```mermaid
@@ -29,14 +33,31 @@ classDiagram
   }
 
   class 車輪 {
+    -int 右モーターのパワー
+    -int 左モーターのパワー
     +初期化() void
+    +パワーを設定する(左モーターのパワー,右モーターのパワー) void
     +回転する() void
     +停止する() void
   }
 
+  class ライントレーサー {
+    +初期化() void
+    +走行する() void
+  }
+
+  class ライン監視 {
+    -ラインの閾値
+    +初期化(ラインの閾値) void
+    +ライン上かどうか() bool_t
+  }
+
   hackspi -- 実行モード
-  hackspi "1"--"2" スターター
-  hackspi "1"--"1" 車輪
+  hackspi "1"-->"2" スターター
+  hackspi "1"-->"1" ライントレーサー
+  ライントレーサー "1"-->"1" 車輪
+  ライントレーサー "1"-->"1" ライン監視
+  ライン監視 "1"-->"1" カラーセンサー
   車輪 "1"--"2" モーター
 ```
 
@@ -49,7 +70,10 @@ sequenceDiagram
     hackspi->>スターター: 押下状態を取得する
   end
   opt 走行中
-    hackspi->>車輪: 回転する
+    hackspi->>ライントレーサー: 走行する
+    ライントレーサー->>ライン監視: ライン上かどうか
+    ライントレーサー->>車輪: パワーを設定する
+    ライントレーサー->>車輪: 回転する
   end
 ```
 
@@ -80,13 +104,30 @@ classDiagram
   }
 
   class wheel {
+    -int right_motor_power
+    -int left_motor_power
     +wheel_init() void
+    +wheel_set_power(int left_motor_power, int right_motor_power) void
     +wheel_run() void
     +wheel_stop() void
   }
 
+  class line_tracer {
+    +line_tracer_init() void
+    +line_tracer_run() void
+  }
+
+  class line_monitor {
+    -int threshold
+    +line_monitor_init(threshold) void
+    +line_monitor_is_on_line() bool_t
+  }
+
   hackspi -- run_mode
   hackspi "1"--"2" starter
-  hackspi "1"--"1" wheel
+  hackspi "1"--"1" line_tracer
+  line_tracer "1"--"1" wheel
+  line_tracer "1"--"1" line_monitor
+  line_monitor "1"--"1" color_sensor
   wheel "1"--"2" motor
 ```
