@@ -6,7 +6,7 @@
 void line_tracer_init()
 {
   wheel_init();
-  line_monitor_init();
+  line_monitor_init(20);
 }
 
 void line_tracer_run()
