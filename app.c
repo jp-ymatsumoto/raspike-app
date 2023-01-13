@@ -3,18 +3,16 @@
 #include "hackspi.h"
 #include "parameters.h"
 
+static void init_ports();
+static void init_classes();
+
 /**
  * メインタスクで実行する関数
  */
 void main_task(intptr_t exinf)
 {
-  // 左モーターのポートを設定する
-  ev3_motor_config(left_motor, MEDIUM_MOTOR);
-  // 右モーターのポートを設定する
-  ev3_motor_config(right_motor, MEDIUM_MOTOR);
-
-  // クラスを初期化する
-  hackspi_init();
+  init_ports();
+  init_classes();
 
   printf("\n\n\nSTART\n\n\n");
 
@@ -56,4 +54,21 @@ void tracer_task(intptr_t exinf)
 
   // タスクを終了する
   ext_tsk();
+}
+
+static void init_ports()
+{
+  // 左モーターのポートを設定する
+  ev3_motor_config(left_motor, MEDIUM_MOTOR);
+  // 右モーターのポートを設定する
+  ev3_motor_config(right_motor, MEDIUM_MOTOR);
+
+  // カラーセンサーのポートを設定する
+  ev3_sensor_config(color_sensor, COLOR_SENSOR);
+}
+
+static void init_classes()
+{
+  // クラスを初期化する
+  hackspi_init();
 }
