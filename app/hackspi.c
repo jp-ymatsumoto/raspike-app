@@ -1,7 +1,4 @@
 #include "hackspi.h"
-#include "parameters.h"
-#include "starter.h"
-#include "wheel.h"
 
 // 実行状態の列挙体
 typedef enum
@@ -22,7 +19,7 @@ void hackspi_init()
 {
   // クラスを初期化する
   starter_init();
-  wheel_init();
+  line_tracer_init();
 }
 
 void hackspi_run()
@@ -59,5 +56,5 @@ static void hackspi_run_starter()
 
 static void hackspi_run_tracer()
 {
-  wheel_run();
+  line_tracer_run();
 }
