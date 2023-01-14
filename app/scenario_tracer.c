@@ -38,8 +38,8 @@ void scenario_tracer_run()
 
 static void scenario_tracer_run_timer_starting()
 {
-  const time = scenario_get_current_scene_time();
-  cycle_timer_set_time(time);
+  const int time = scenario_get_current_scene_time();
+  cycle_timer_set_time(time / 10);
   cycle_timer_start();
   mode = STATE_RUNNING;
 }
