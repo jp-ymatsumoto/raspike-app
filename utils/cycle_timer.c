@@ -7,9 +7,8 @@ void cycle_timer_init()
 {
 }
 
-void cycle_timer_set_time(int _current_time, int _target_time)
+void cycle_timer_set_time(int _target_time)
 {
-  current_time = _current_time;
   target_time = _target_time;
 }
 
