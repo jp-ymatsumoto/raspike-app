@@ -42,11 +42,24 @@ classDiagram
   }
 
   class シナリオトレーサー {
+    -状態モード モード = タイマーの起動中
     +初期化() void
     +走行する() void
+    -hackspi_run_timer_starting() void
+    -hackspi_run_running() void
+    -hackspi_run_stopping() void
+  }
+
+  class 状態モード {
+    <<enumeration>>
+    タイマーの起動中
+    走行中
+    タイマーの停止中
   }
 
   class シナリオ {
+    -シーン[] 複数のシーン
+    -int シーンのインデックス
     +初期化() void
     +現在のシーンの走行時間を取得する() int
     +現在のシーンの左モーターのパワーを取得する() int
@@ -68,6 +81,7 @@ classDiagram
     +時間を設定する() void
     +開始する() void
     +停止する() void
+    +指定時間を経過しているか調べる() bool_t
   }
 
 
@@ -78,6 +92,7 @@ classDiagram
   シナリオトレーサー "1"-->"1" シナリオ
   シナリオトレーサー "1"-->"1" 周期タイマー
   シナリオ "1"--"*" シーン
+  シナリオトレーサー "1"--"1" 状態モード
   車輪 "1"--"2" モーター
 ```
 
