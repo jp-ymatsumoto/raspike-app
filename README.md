@@ -60,6 +60,7 @@ classDiagram
   class シナリオ {
     -シーン[] 複数のシーン
     -int シーンのインデックス
+    -int シーンの数
     +初期化() void
     +現在のシーンの走行時間を取得する() int
     +現在のシーンの左モーターのパワーを取得する() int
@@ -182,6 +183,7 @@ classDiagram
   class scenario {
     -scene[] scenes
     -int scene_index
+    -int scene_length
     +scenario_init() void
     +scenario_get_current_scene_time() int
     +scenario_get_current_scene_left_motor_power() int
