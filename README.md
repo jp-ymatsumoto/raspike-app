@@ -183,7 +183,7 @@ classDiagram
     -scene[] scenes
     -int scene_index
     +scenario_init() void
-    +scenario_get_current_scene_time() void
+    +scenario_get_current_scene_time() int
     +scenario_get_current_scene_left_motor_power() int
     +scenario_get_current_scene_right_motor_power() int
     +scenario_next_scene() void
