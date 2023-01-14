@@ -17,7 +17,7 @@ void scenario_tracer_init()
 {
   wheel_init();
   scenario_init();
-  cycle_timer_init();
+  cycle_timer_init(10);
 }
 
 void scenario_tracer_run()
@@ -39,7 +39,7 @@ void scenario_tracer_run()
 static void scenario_tracer_run_timer_starting()
 {
   const int time = scenario_get_current_scene_time();
-  cycle_timer_set_time(time / 10);
+  cycle_timer_set_time(time);
   cycle_timer_start();
   mode = STATE_RUNNING;
 }
