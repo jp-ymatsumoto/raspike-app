@@ -7,10 +7,11 @@ typedef struct
   int right_motor_power;
 } scene;
 
-static scene[] scenes = {
+static scene scenes[] = {
     {1000, 60, 0},
     {1000, 0, 60},
-    {1000, 40, 40}};
+    {1000, 40, 40},
+};
 static int scene_index = 0;
 static int scene_length = 3;
 
