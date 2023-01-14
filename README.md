@@ -163,22 +163,56 @@ classDiagram
     +wheel_stop() void
   }
 
-  class line_tracer {
-    +line_tracer_init() void
-    +line_tracer_run() void
+  class scenario_tracer {
+    -status_mode mode = STATE_TIMER_STARTING
+    +scenario_tracer_init() void
+    +scenario_tracer_run() void
+    -scenario_tracer_run_timer_starting() void
+    -scenario_tracer_run_running() void
+    -scenario_tracer_run_timer_stopping() void
   }
 
-  class line_monitor {
-    -int threshold
-    +line_monitor_init(threshold) void
-    +line_monitor_is_on_line() bool_t
+  class status_mode {
+    <<enumeration>>
+    STATE_TIMER_STARTING
+    STATE_RUNNING
+    STATE_TIMER_STOPPING
+  }
+
+  class scenario {
+    -scene[] scenes
+    -int scene_index
+    +scenario_init() void
+    +scenario_get_current_scene_time() void
+    +scenario_get_current_scene_left_motor_power() int
+    +scenario_get_current_scene_right_motor_power() int
+    +scenario_next_scene() void
+  }
+
+  class scene {
+    <<struct>>
+    +int time_ms
+    +int left_motor_power
+    +int right_motor_power
+  }
+
+  class cycle_timer {
+    -int current_time
+    -int target_time
+    +cycle_timer_init() void
+    +cycle_timer_set_time(int _current_time, int _target_time) void
+    +cycle_timer_start() void
+    +cycle_timer_stop() void
+    +cycle_timer_is_() bool_t
   }
 
   hackspi -- run_mode
   hackspi "1"--"2" starter
-  hackspi "1"--"1" line_tracer
-  line_tracer "1"--"1" wheel
-  line_tracer "1"--"1" line_monitor
-  line_monitor "1"--"1" color_sensor
+  hackspi "1"--"1" scenario_tracer
+  scenario_tracer "1"--"1" wheel
+  scenario_tracer "1"--"1" scenario
+  scenario_tracer "1"--"1" cycle_timer
+  scenario_tracer "1"--"1" status_mode
+  scenario "1"--"*" scene
   wheel "1"--"2" motor
 ```
