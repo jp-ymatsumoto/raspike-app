@@ -203,7 +203,7 @@ classDiagram
     +cycle_timer_set_time(int _current_time, int _target_time) void
     +cycle_timer_start() void
     +cycle_timer_stop() void
-    +cycle_timer_is_() bool_t
+    +cycle_timer_is_time_over() bool_t
   }
 
   hackspi -- run_mode
