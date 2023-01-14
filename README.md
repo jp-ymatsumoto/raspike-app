@@ -79,7 +79,7 @@ classDiagram
     -int 経過時間
     -int 指定時間
     +初期化() void
-    +時間を設定する() void
+    +時間を設定する(指定時間) void
     +開始する() void
     +停止する() void
     +指定時間を経過しているか調べる() bool_t
@@ -202,7 +202,7 @@ classDiagram
     -int current_time
     -int target_time
     +cycle_timer_init() void
-    +cycle_timer_set_time(int _current_time, int _target_time) void
+    +cycle_timer_set_time(int _target_time) void
     +cycle_timer_start() void
     +cycle_timer_stop() void
     +cycle_timer_is_time_over() bool_t
