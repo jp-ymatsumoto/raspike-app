@@ -3,7 +3,8 @@
 
 #include "parameters.h"
 #include "starter.h"
-#include "linetracer.h"
+// #include "linetracer.h"
+#include "scenario_tracer.h"
 
 void hackspi_init();
 void hackspi_run();

@@ -19,7 +19,8 @@ void hackspi_init()
 {
   // クラスを初期化する
   starter_init();
-  line_tracer_init();
+  // line_tracer_init();
+  scenario_tracer_init();
 }
 
 void hackspi_run()
@@ -56,5 +57,6 @@ static void hackspi_run_starter()
 
 static void hackspi_run_tracer()
 {
-  line_tracer_run();
+  // line_tracer_run();
+  scenario_tracer_run();
 }
