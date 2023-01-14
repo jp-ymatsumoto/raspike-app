@@ -78,7 +78,8 @@ classDiagram
   class 周期タイマー {
     -int 経過時間
     -int 指定時間
-    +初期化() void
+    -int １周期の時間
+    +初期化(１周期の時間) void
     +時間を設定する(指定時間) void
     +開始する() void
     +停止する() void
@@ -199,10 +200,11 @@ classDiagram
   }
 
   class cycle_timer {
-    -int current_time
-    -int target_time
+    -int current_time_ms
+    -int target_time_ms
+    -int cycle_time_ms
     +cycle_timer_init() void
-    +cycle_timer_set_time(int _target_time) void
+    +cycle_timer_set_time(int _target_time_ms) void
     +cycle_timer_start() void
     +cycle_timer_stop() void
     +cycle_timer_is_time_over() bool_t
